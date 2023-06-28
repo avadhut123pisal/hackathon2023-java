@@ -38,4 +38,21 @@ public class ProductService {
         }
         return null; // Product with the specified ID was not found
     }
+
+    public static String convertToHex(byte[] Data) {
+        String hexString = "";
+        for (int i = 0; i < Data.length; i++) {
+            int halfbyte = Data[i] >> 4 & 15;
+            int twoHalfs = 0;
+            while (twoHalfs++ < 1) {
+                if (halfbyte >= 0 && halfbyte <= 9) {
+                    hexString += (char) (48 + halfbyte);
+                } else {
+                    hexString += (char) (97 + (halfbyte - 10));
+                }
+                halfbyte = Data[i] & 15;
+            }
+        }
+        return hexString;
+    }
 }
